@@ -70,29 +70,24 @@ class Addd extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		// const data = new FormData();
+		const data = new FormData();
 		// data.append("myImage", this.state.file);
-		const dataProduct = {
-			name: this.state.name,
-			type: this.state.type,
-			price: this.state.price,
-			rating: this.state.rating,
-			warranty_years: this.state.warranty_years,
-			available: this.state.available,
-			file: this.state.file
-		};
-		console.log(dataProduct);
-		const config = {
-			"content-type": "multipart/form-data"
-		};
+		//const dataProduct = {
+		data.append("name", this.state.name);
+		data.append("type", this.state.type);
+		data.append("price", this.state.price);
+		data.append("rating", this.state.rating);
+		data.append("warranty_years", this.state.warranty_years);
+		data.append("available", this.state.available);
+		data.append("file", this.state.file);
 
-		axios
-			.post("http://localhost:8080/phone/addPhone", dataProduct, config)
-			.then(res => {
-				console.log(res.data);
-				// window.location = "/AllPhone";
-			});
+		
+		axios.post("http://localhost:8080/phone/addPhone", data).then(res => {
+			console.log(res.data);
+			// window.location = "/AllPhone";
+		});
 	};
+
 	render() {
 		const { classes } = this.props;
 		return (
